@@ -9,7 +9,7 @@ const StyledButton = styled.button<ButtonProps>`
   cursor: pointer;
   font-weight: 700;
   font-weight: bold;
-  border-radius: 3px;
+  border-radius: 20px;
   display: inline-block;
   padding: ${(props) =>
     props.size === "small"

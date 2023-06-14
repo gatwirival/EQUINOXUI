@@ -5,38 +5,29 @@ import { InputProps } from "./Input.types";
 const StyledInput = styled.input<InputProps>`
   height: 40px;
   width: 300px;
-  border-radius: 3px;
-  border: solid 2px
-    ${(props) =>
-      props.disabled
-        ? "#e4e3ea"
-        : props.error
-        ? "#a9150b"
-        : props.success
-        ? "#067d68"
-        : "#353637"};
-  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid ${(props) => (props.disabled ? "#ccc" : "#ccc")};
+  background-color: ${(props) => (props.disabled ? "#f7f7f7" : "#fff")};
+  padding: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+
   &:focus {
-    border: solid 2px #1b116e;
+    border-color: #1b116e;
   }
 `;
 
 const StyledLabel = styled.div<InputProps>`
   font-size: 14px;
-  color: ${(props) => (props.disabled ? "#e4e3ea" : "#080808")};
-  padding-bottom: 6px;
+  color: ${(props) => (props.disabled ? "#ccc" : "#080808")};
+  margin-bottom: 6px;
 `;
 
 const StyledMessage = styled.div<InputProps>`
   font-size: 14px;
-  color: #a9150b8;
-  padding-top: 4px;
-`;
-
-const StyledText = styled.p<InputProps>`
-  margin: 0px;
-  color: ${(props) =>
-    props.disabled ? "#e4e3ea" : props.error ? "#a9150b" : "#080808"};
+  color: #a9150b;
+  margin-top: 4px;
 `;
 
 const Input: FC<InputProps> = ({
@@ -52,22 +43,19 @@ const Input: FC<InputProps> = ({
 }) => {
   return (
     <Fragment>
-      <StyledLabel>
-        <StyledText disabled={disabled} error={error}>
-          {label}
-        </StyledText>
+      <StyledLabel disabled={disabled}>
+        {label}
       </StyledLabel>
       <StyledInput
         id={id}
         type="text"
         onChange={onChange}
         disabled={disabled}
-        error={error}
-        success={success}
         placeholder={placeholder}
-        {...props}></StyledInput>
+        {...props}
+      />
       <StyledMessage>
-        <StyledText error={error}>{message}</StyledText>
+        {message}
       </StyledMessage>
     </Fragment>
   );
